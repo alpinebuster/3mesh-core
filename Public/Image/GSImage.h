@@ -9,6 +9,22 @@
 namespace GS
 {
 
+// Image Pixel Formats (note: not actually used yet)
+enum class EGSPixelFormat : uint8_t
+{
+	Invalid = 0,
+	G8      = 1,    // 8-bit grayscale
+	BGRA8   = 2,    // 8-bit BGRA (unreal FColor)
+	RGBA8	= 3,    // 8-bit RGBA
+	G16     = 4,    // 16-bit grayscale
+	RGBA16  = 5,    // 16-bit per channel
+	RGBA16F = 6,    // half-float per channel
+	RGBA32F = 7,    // float per channel
+	G16F    = 8,    // half-float grayscale
+	G32F    = 9,    // float grayscale
+};
+
+
 template<typename RealPixelType, typename RealChannelType, int NumChannels>
 class TRealImageBuffer
 {
