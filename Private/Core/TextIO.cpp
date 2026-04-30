@@ -98,7 +98,8 @@ FileTextReader FileTextReader::OpenFile(const std::string& FilePath)
 {
 	FileTextReader Result;
 
-	Result.FilePtr = fopen(FilePath.c_str(), "r");
+	fopen_s(&Result.FilePtr, FilePath.c_str(), "r");
+
 	//if (!FilePtr)
 	//	return false;
 	return Result;

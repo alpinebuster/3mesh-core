@@ -21,6 +21,14 @@ struct GRADIENTSPACECORE_API GSTag
 };
 
 
+#if defined(_MSC_VER)
+#pragma warning(push)
+// C4587/C4588: anonymous struct member's constructor/destructor no longer implicitly called.
+// We initialize the Tags[] arm of the union instead, which aliases the same storage — intended.
+#pragma warning(disable: 4587)
+#pragma warning(disable: 4588)
+#endif
+
 struct GRADIENTSPACECORE_API GSTagSet
 {
 	union {
@@ -65,6 +73,10 @@ struct GRADIENTSPACECORE_API GSTagSet
 
 
 };
+
+#if defined(_MSC_VER)
+#pragma warning(pop)
+#endif
 
 
 
