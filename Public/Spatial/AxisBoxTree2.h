@@ -21,6 +21,7 @@ struct DistanceQueryOptions
 };
 
 
+//! AABBTree for a 2D Axis-Aligned Boxes
 template<typename RealType>
 class AxisBoxTree2
 {
