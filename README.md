@@ -10,6 +10,6 @@ A sample vcxproj file for Visual Studio is provided in `/Build/vs2022/Gradientsp
 
 A CMake script is also included, with presets. The preset **Windows x64 vs2022** / **windows-x64-vs2022** will generate a Visual Studio project in `Build/cmake-win64-vs2022`.
 
-On Linux, use `cmake --preset=linux` to generate a makefile project in `Build/cmake-linux`.
+On Linux, use `cmake --preset=linux` to generate a makefile project in `Build/cmake-linux`, then run `make`.
 
 The CMake script is suitable to be included in higher-level scripts using add_directory().

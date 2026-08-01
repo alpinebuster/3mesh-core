@@ -42,7 +42,7 @@ struct modulo_iteration
 	modulo_iteration(uint32_t Num)
 	{
 		N = (uint64_t)std::max((uint32_t)0, Num);
-		modN = std::max(1ull, N);
+		modN = std::max<uint64_t>(1, N);
 		cur_index = ( (N/2) + modulo_prime ) % modN;	// do one initial mod-iteration, from middle of range
 		i = 0;
 	}
@@ -50,7 +50,7 @@ struct modulo_iteration
 	modulo_iteration(int32_t Num)
 	{
 		N = (uint64_t)std::max((int32_t)0, Num);
-		modN = std::max(1ull, N);
+		modN = std::max<uint64_t>(1, N);
 		cur_index = ( (N/2) + modulo_prime ) % modN;	// do one initial mod-iteration, from middle of range
 		i = 0;
 	}
@@ -100,6 +100,5 @@ struct modulo_iteration
 		return i >= N;
 	}
 };
-
 
 }

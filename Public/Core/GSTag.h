@@ -28,21 +28,27 @@ struct GRADIENTSPACECORE_API GSTag
 #pragma warning(disable: 4588)
 #endif
 
+
 struct GRADIENTSPACECORE_API GSTagSet
 {
-	union {
-		struct {
-			GSTag A;
-			GSTag B;
-			GSTag C;
-			GSTag D;
-		};
-		GSTag Tags[4];
-	};
+    struct TagsStruct
+    {
+        GSTag A;
+        GSTag B;
+        GSTag C;
+        GSTag D;
+    } tagsStruct;
+    GSTag Tags[4];
 
 	int NumTags;
 
-	GSTagSet() : Tags{ GSTag(), GSTag(), GSTag(), GSTag() }, NumTags(0) {}
+	GSTagSet() : Tags{ GSTag(), GSTag(), GSTag(), GSTag() }, NumTags(0)
+	{
+        tagsStruct.A = Tags[0];
+        tagsStruct.B = Tags[1];
+        tagsStruct.C = Tags[2];
+        tagsStruct.D = Tags[3];
+    }
 
 	bool AddTag(GSTag Tag, bool bUniqueType = false)
 	{
@@ -52,7 +58,6 @@ struct GRADIENTSPACECORE_API GSTagSet
 		NumTags++;
 		return true;
 	}
-
 
 	bool ContainsTagOfType(GSTag Tag) const
 	{

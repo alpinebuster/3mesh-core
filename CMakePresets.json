@@ -9,9 +9,18 @@
       "architecture": {
         "value": "x64",
         "strategy": "external"
-      },	  
+      },
       "cacheVariables": {
         "CMAKE_INSTALL_PREFIX": "${sourceDir}/install/${presetName}"
+      }
+    },
+    {
+      "name": "linux",
+      "displayName": "Linux",
+      "generator": "Unix Makefiles",
+      "binaryDir": "build/cmake-linux",
+      "cacheVariables": {
+		    "CMAKE_INSTALL_PREFIX": "${sourceDir}/install/${presetName}"
       }
     }
   ]
