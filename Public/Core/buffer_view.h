@@ -4,6 +4,8 @@
 #include "GradientspacePlatform.h"
 #include "Core/gs_debug.h"
 
+#include <type_traits>
+
 namespace GS
 {
 

@@ -7,28 +7,28 @@ namespace GS
 {
 
 /**
- * modulo_iteration iterates over values in the range 0...N-1 (inclusive) 
+ * modulo_iteration iterates over values in the range 0...N-1 (inclusive)
  * in a shuffled manner. This can be useful in situations where a statistically
- * randomized order is not necessary. 
- * 
+ * randomized order is not necessary.
+ *
  * Starting at any index in the valid range, and given a prime number P larger
  * than N, repeatedly computing cur_index = (cur_index + P) % N will produce
- * every value in the range before repeating. 
- * 
+ * every value in the range before repeating.
+ *
  * Usage options:
- * 
+ *
  * GS::modulo_iteration iter(N);
  *
  * int idx = 0;
  * while (iter.next_index(idx)) { .. }
- * 
+ *
  * while (!iter.done()) {
  *   int idx = iter.get_and_increment();
- *   ... 
+ *   ...
  * }
- * 
+ *
  * for (int idx = iter.get(); iter.increment(); idx = iter.get()) { .. }
- * 
+ *
  */
 struct modulo_iteration
 {
@@ -42,7 +42,7 @@ struct modulo_iteration
 	modulo_iteration(uint32_t Num)
 	{
 		N = (uint64_t)std::max((uint32_t)0, Num);
-		modN = std::max<uint64_t>(1, N);
+		modN = std::max(1ull, N);
 		cur_index = ( (N/2) + modulo_prime ) % modN;	// do one initial mod-iteration, from middle of range
 		i = 0;
 	}
@@ -50,7 +50,7 @@ struct modulo_iteration
 	modulo_iteration(int32_t Num)
 	{
 		N = (uint64_t)std::max((int32_t)0, Num);
-		modN = std::max<uint64_t>(1, N);
+		modN = std::max(1ull, N);
 		cur_index = ( (N/2) + modulo_prime ) % modN;	// do one initial mod-iteration, from middle of range
 		i = 0;
 	}

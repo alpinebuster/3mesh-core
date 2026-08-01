@@ -491,7 +491,7 @@ void check_boxes(const AxisBox2<RealType>& A, const AxisBox2<RealType>& B)
 	RealType AreaB = B.Area();
 	gs_debug_assert(ToleranceEqual(AreaA, AreaB));
 	AxisBox2<RealType> Combined = A;
-	A.Contains(B);
+	Combined.Contain(B);
 	RealType AreaC = Combined.Area();
 	gs_debug_assert(ToleranceEqual(AreaA, AreaC));
 }
@@ -500,8 +500,14 @@ void check_boxes(const AxisBox2<RealType>& A, const AxisBox2<RealType>& B)
 template<typename RealType>
 void GS::AxisBoxTree2<RealType>::Validate()
 {
+	if (LeafBoxLists.size() == 0 && NodeTree.size() == 0)
+		return;
+
 	AxisBox2<RealType> ComputedBounds;
-	validate_internal_node(RootIndex, ComputedBounds);
+	if (RootIndex.LeafCount > 0)
+		validate_leaf_child(RootIndex, ComputedBounds);
+	else
+		validate_internal_node(RootIndex, ComputedBounds);
 	check_boxes(RootBounds, ComputedBounds);
 }
 

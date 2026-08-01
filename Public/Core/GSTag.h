@@ -20,26 +20,29 @@ struct GRADIENTSPACECORE_API GSTag
 };
 
 
+#if defined(_MSC_VER)
+#pragma warning(push)
+// C4587/C4588: anonymous struct member's constructor/destructor no longer implicitly called.
+// We initialize the Tags[] arm of the union instead, which aliases the same storage — intended.
+#pragma warning(disable: 4587)
+#pragma warning(disable: 4588)
+#endif
+
 struct GRADIENTSPACECORE_API GSTagSet
 {
-    struct TagsStruct
-    {
-        GSTag A;
-        GSTag B;
-        GSTag C;
-        GSTag D;
-    } tagsStruct;
-    GSTag Tags[4];
+	union {
+		struct {
+			GSTag A;
+			GSTag B;
+			GSTag C;
+			GSTag D;
+		};
+		GSTag Tags[4];
+	};
 
 	int NumTags;
 
-	GSTagSet() : Tags{ GSTag(), GSTag(), GSTag(), GSTag() }, NumTags(0)
-	{
-        tagsStruct.A = Tags[0];
-        tagsStruct.B = Tags[1];
-        tagsStruct.C = Tags[2];
-        tagsStruct.D = Tags[3];
-    }
+	GSTagSet() : Tags{ GSTag(), GSTag(), GSTag(), GSTag() }, NumTags(0) {}
 
 	bool AddTag(GSTag Tag, bool bUniqueType = false)
 	{
@@ -50,10 +53,11 @@ struct GRADIENTSPACECORE_API GSTagSet
 		return true;
 	}
 
+
 	bool ContainsTagOfType(GSTag Tag) const
 	{
 		for (int j = 0; j < NumTags; ++j)
-			if (Tags[j].Type == Tag.Type) 
+			if (Tags[j].Type == Tag.Type)
 				return true;
 		return false;
 	}
@@ -65,6 +69,11 @@ struct GRADIENTSPACECORE_API GSTagSet
 				return &Tags[j];
 		return nullptr;
 	}
+
 };
+
+#if defined(_MSC_VER)
+#pragma warning(pop)
+#endif
 
 }
