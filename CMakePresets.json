@@ -5,7 +5,7 @@
       "name": "windows-x64-vs2022",
       "displayName": "Windows x64 vs2022",
       "generator": "Visual Studio 17 2022",
-      "binaryDir": "build/cmake-win64-vs2022",
+      "binaryDir": "Build/cmake-win64-vs2022",
       "architecture": {
         "value": "x64",
         "strategy": "external"
@@ -18,7 +18,7 @@
       "name": "linux",
       "displayName": "Linux",
       "generator": "Unix Makefiles",
-      "binaryDir": "build/cmake-linux",
+      "binaryDir": "Build/cmake-linux",
       "cacheVariables": {
 		    "CMAKE_INSTALL_PREFIX": "${sourceDir}/install/${presetName}"
       }
